@@ -54,7 +54,7 @@ function App() {
         return boardToCheck[a]
       }
     }
-    return NULL
+    return null
 
   }
 
@@ -62,6 +62,10 @@ function App() {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+  }
+
+  const checkEndGame = (newBoard) =>{
+    return newBoard.every((Square) => Square !== null)
   }
 
   const updateBoard = (index)=>{ //en esta funcion se actualiza el turno y se actualiza el tablero para renderizar la x o el o
@@ -76,7 +80,8 @@ function App() {
     const newWinner = checkWinner(newBoard)
     if(newWinner){
       setWinner(newWinner)
-
+    }else if(checkEndGame(newBoard)){
+      setWinner(false)
     }
 
   }
@@ -120,7 +125,7 @@ function App() {
                 {
                   winner === false
                   ? 'Empate'
-                  : 'Gano: '
+                  : 'Gano:'
                 }
               </h2>
               <header className='win'>
